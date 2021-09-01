@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.ada.api.empleadas.entities.Categoria;
@@ -37,6 +39,21 @@ public class EmpleadaController {
 
         return ResponseEntity.ok(lista);
     }
+    
+    @GetMapping("/api/empleados")
+    @ResponseBody
+    public ResponseEntity<List<Empleada>> getPorNombre(@RequestParam(required = false) String nombre){
+
+        List<Empleada> empleadas;
+
+        if (nombre== null){
+            empleadas = service.traerEmpleada();
+        }else{
+            empleadas = service.buscarEmpleadoPorNombre(nombre);
+        }
+        
+        return ResponseEntity.ok(empleadas);
+    }
 
     @PostMapping("/empleados")
     public ResponseEntity<?> crearEmpleada(@RequestBody InfoEmpleadaNueva empleadaInfo) {
@@ -61,11 +78,11 @@ public class EmpleadaController {
     }
 
     @GetMapping("/empleados/{id}")
-    public ResponseEntity<Empleada> getEmpleadaPorId(@PathVariable Integer id){
+    public ResponseEntity<Empleada> getEmpleada(@PathVariable Integer id){
         Empleada empleada = service.buscarEmpleada(id);
 
         return ResponseEntity.ok(empleada);
-    }
+    }    
 
     //Detele/empleados/{id} --> Da de baja un empleado poniendo el campo estado en "baja"
     // y la fecha de baja que sea el dia actual.

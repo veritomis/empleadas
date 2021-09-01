@@ -83,10 +83,7 @@ public class Empleada {
     }
 
 
-    public EstadoEmpleadaEnum getEstado(){
 
-        return EstadoEmpleadaEnum.parse(this.estado);
-    }
 
     public void setEstado(EstadoEmpleadaEnum estado) {
         this.estado = estado.getValue();
@@ -145,6 +142,11 @@ public class Empleada {
 
     }
 
+
+    public EstadoEmpleadaEnum getEstado() {
+        return EstadoEmpleadaEnum.parse(this.estado);
+
+    }
 
 
     
