@@ -13,7 +13,7 @@ public class SueldoVentas implements ISueldoCalculator {
         BigDecimal ventasAnuales = empleada.obtenerVentasAnuales();
 
         return empleada.getCategoria().getSueldoBase().add(ventasAnuales.multiply(new BigDecimal(0.1))).setScale(2,
-                RoundingMode.HALF_EVEN);
+                RoundingMode.HALF_EVEN); //half- even redondeo bancario
     }
 
 }
