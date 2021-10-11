@@ -37,6 +37,7 @@ public class CategoriaController {
     public ResponseEntity<List<Categoria>> traerCategorias (){ //return Response Entity
         return ResponseEntity.ok(service.traerCategorias()); //return entity con el valor esperado
     }
+    
     @GetMapping("/categorias/sueldos-nuevos")
     public ResponseEntity<List<Empleada>> calcularProximosSueldos() {
         return ResponseEntity.ok(service.calcularProximosSueldos());
